@@ -3,11 +3,9 @@
 /* some style */
 #app {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 750px;
+  width: 650px;
   height: 450px;
-  border: 1px solid gray;
+  border: 1px solid lightgray;
   border-radius: 0.2em;
 }
 button {
@@ -15,11 +13,19 @@ button {
   border-radius: 0.1em;
   height: 50px;
   width: 110px;
+  box-shadow: 2px 2px 5px;
 }
 
 .success {
-  background: #4caf50;
-  color: white;
+  color: darkgrey;
+}
+
+.file-item-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: darkgray;
 }
 
 .container {
@@ -28,10 +34,11 @@ button {
   display: grid;
   grid-template-rows: auto 1fr auto;
 }
+
 .header {
   height: 50px;
   border-bottom: 1px solid lightgray;
-  color: darkcyan;
+  color: darkgrey;
   text-align: center;
   padding-top: 12px;
 }

@@ -17,24 +17,30 @@
   (let [ref (rum/create-ref)]
     [:form {:on-submit (fn [e] (.preventDefault e))}
      [:div nil
-      [:input {:ref ref
-               :key "file-upload"
-               :type "file"
-               :name "File Upload"
-               :style {:display "none"}
-               :on-change (fn [] (let [file (aget (.-files (rum/deref ref)) 0)
-                                       filename (.-name file)] (reset! user-file filename)))}]
-      (button (fn [] (.click (rum/deref ref))) "Upload file")]]))
+      [:input
+       {:ref ref
+        :key "file-upload"
+        :type "file"
+        :name "File Upload"
+        :style {:display "none"}
+        :on-change (fn [] (let [file (aget (.-files (rum/deref ref)) 0)
+                                filename file] (reset! user-file filename)))}]
+      [:button
+       {:class "success"
+        :on-click (fn [] (.click (rum/deref ref)))}
+       "Upload file"]]]))
 
 
-
-(rum/defc upload-form []
-  [:form nil [:div (file-uploader)]])
+(rum/defc file-item [f]
+  [:div {:class "file-item-container"}
+   [:div nil (.-name f)]
+   [:div nil (.-size f)]
+   [:div nil (.-lastModified f)]])
 
 
 (rum/defc app < rum/reactive []
   [:div {:class "container"} [:div {:class "header"} "File Uploader"]
-   [:div {:class "content"} (rum/react user-file)]
+   [:div {:class "content"} (file-item (rum/react user-file))]
    [:div {:class "footer"} (file-uploader)]])
 
 
