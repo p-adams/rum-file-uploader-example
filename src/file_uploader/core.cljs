@@ -3,15 +3,9 @@
    [goog.dom :as gdom]
    [rum.core :as rum]))
 
-
-;; define your app data so that it doesn't get over-written on reload
-(defonce app-state (atom {:file-el nil}))
-
-(def user-file (atom ""))
-
-(rum/defc button [h txt]
-  [:button {:class "success" :on-click h} txt])
-
+(defonce user-file (atom {:name ""
+                          :size 0
+                          :last-modified 0}))
 
 (rum/defc file-uploader < rum/reactive  []
   (let [ref (rum/create-ref)]
@@ -23,8 +17,9 @@
         :type "file"
         :name "File Upload"
         :style {:display "none"}
-        :on-change (fn [] (let [file (aget (.-files (rum/deref ref)) 0)
-                                filename file] (reset! user-file filename)))}]
+        :on-change (fn []
+                     (let [file (aget (.-files (rum/deref ref)) 0)]
+                       (reset! user-file file)))}]
       [:button
        {:class "success"
         :on-click (fn [] (.click (rum/deref ref)))}
@@ -53,4 +48,4 @@
 (defn ^:after-load on-reload []
   ;; optionally touch your app-state to force rerendering depending on
   ;; your application
-  (swap! app-state update-in [:__figwheel_counter] inc))
+  (swap! user-file update-in [:__figwheel_counter] inc))
