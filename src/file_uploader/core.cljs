@@ -7,6 +7,8 @@
                           :size 0
                           :last-modified 0}))
 
+;; Todo: handle multiple file uploads
+
 (rum/defc file-uploader < rum/reactive  []
   (let [ref (rum/create-ref)]
     [:form {:on-submit (fn [e] (.preventDefault e))}
@@ -20,11 +22,11 @@
         :on-change (fn []
                      (let [file (aget (.-files (rum/deref ref)) 0)]
                        (reset! user-file file)))}]
+
       [:button
        {:class "success"
         :on-click (fn [] (.click (rum/deref ref)))}
-       "Upload file"]]]))
-
+       [:i {:class "fa fa-upload success" :aria-hidden true}]]]]))
 
 (rum/defc file-item [f]
   [:div {:class "file-item-container"}

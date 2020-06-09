@@ -25,7 +25,11 @@ button {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  height: 100%;
   color: darkgray;
+}
+.file-item-container div {
+  padding: 5px;
 }
 
 .container {
