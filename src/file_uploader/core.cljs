@@ -3,9 +3,7 @@
    [goog.dom :as gdom]
    [rum.core :as rum]))
 
-(defonce user-file (atom {:name ""
-                          :size 0
-                          :last-modified 0}))
+(defonce user-file (atom nil))
 
 ;; Todo: handle multiple file uploads
 
@@ -30,9 +28,11 @@
 
 (rum/defc file-item [f]
   [:div {:class "file-item-container"}
-   [:div nil (.-name f)]
-   [:div nil (.-size f)]
-   [:div nil (.-lastModified f)]])
+   (if f
+     (rum/fragment [:div nil (.-name f)]
+                   [:div nil (.-size f)]
+                   [:div nil (.-lastModified f)])
+     [:i {:class "fa fa-file" :aria-hidden true}])])
 
 
 (rum/defc app < rum/reactive []
