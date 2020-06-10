@@ -26,12 +26,16 @@
         :on-click (fn [] (.click (rum/deref ref)))}
        [:i {:class "fa fa-upload success" :aria-hidden true}]]]]))
 
+(defn ts->ds
+  [ts]
+  (.toLocaleString (new js/Date ts)))
+
 (rum/defc file-item [f]
   [:div {:class "file-item-container"}
    (if f
      (rum/fragment [:div nil [:span "Name: "] (.-name f)]
                    [:div nil [:span "Size: "] (.-size f)]
-                   [:div nil [:span "Last modified: "] (.-lastModified f)])
+                   [:div nil [:span "Last modified: "] (ts->ds (.-lastModified f))])
      [:i {:class "fa fa-file" :style {:fontSize "50px"} :aria-hidden true}])])
 
 
