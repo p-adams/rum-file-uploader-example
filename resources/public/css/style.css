@@ -31,7 +31,9 @@ button {
 .file-item-container div {
   padding: 5px;
 }
-
+.file-item-container span {
+  font-weight: bold;
+}
 .container {
   height: inherit;
   width: inherit;

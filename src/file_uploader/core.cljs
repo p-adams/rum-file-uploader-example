@@ -29,10 +29,10 @@
 (rum/defc file-item [f]
   [:div {:class "file-item-container"}
    (if f
-     (rum/fragment [:div nil (.-name f)]
-                   [:div nil (.-size f)]
-                   [:div nil (.-lastModified f)])
-     [:i {:class "fa fa-file" :aria-hidden true}])])
+     (rum/fragment [:div nil [:span "Name: "] (.-name f)]
+                   [:div nil [:span "Size: "] (.-size f)]
+                   [:div nil [:span "Last modified: "] (.-lastModified f)])
+     [:i {:class "fa fa-file" :style {:fontSize "50px"} :aria-hidden true}])])
 
 
 (rum/defc app < rum/reactive []
