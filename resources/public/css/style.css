@@ -7,17 +7,20 @@
   height: 450px;
   border: 1px solid lightgray;
   border-radius: 0.2em;
+  font-family: Arial, Helvetica, sans-serif;
 }
 button {
   border-style: none;
   border-radius: 0.1em;
   height: 50px;
   width: 110px;
-  box-shadow: 2px 2px 5px;
+  box-shadow: 2px 2px 5px gray;
+  background-color: #434a54;
+  cursor: pointer;
 }
 
 .success {
-  color: darkgrey;
+  color: white;
 }
 
 .file-item-container {
@@ -34,6 +37,10 @@ button {
 .file-item-container span {
   font-weight: bold;
 }
+.file-item {
+  border: 2px solid lightgray;
+  border-radius: 5px;
+}
 .container {
   height: inherit;
   width: inherit;
@@ -43,15 +50,18 @@ button {
 
 .header {
   height: 50px;
-  border-bottom: 1px solid lightgray;
-  color: darkgrey;
+  background-color: lightgray;
+  color: #434a54;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
   text-align: center;
   padding-top: 12px;
+  line-height: 35px;
 }
 .footer {
   display: flex;
   height: 100px;
-  border-top: 1px solid lightgray;
+  background-color: lightgray;
   align-items: center;
   justify-content: center;
 }

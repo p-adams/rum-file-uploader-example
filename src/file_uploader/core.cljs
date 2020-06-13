@@ -5,8 +5,6 @@
 
 (defonce user-file (atom nil))
 
-;; Todo: handle multiple file uploads
-
 (rum/defc file-uploader < rum/reactive  []
   (let [ref (rum/create-ref)]
     [:form {:on-submit (fn [e] (.preventDefault e))}
@@ -16,6 +14,7 @@
         :key "file-upload"
         :type "file"
         :name "File Upload"
+        :multiple true
         :style {:display "none"}
         :on-change (fn []
                      (let [file (aget (.-files (rum/deref ref)) 0)]
@@ -33,9 +32,9 @@
 (rum/defc file-item [f]
   [:div {:class "file-item-container"}
    (if f
-     (rum/fragment [:div nil [:span "Name: "] (.-name f)]
-                   [:div nil [:span "Size: "] (.-size f)]
-                   [:div nil [:span "Last modified: "] (ts->ds (.-lastModified f))])
+     (rum/fragment [:div {:class "file-item"} [:div nil [:span "Name: "] (.-name f)]
+                    [:div nil [:span "Size: "] (.-size f)]
+                    [:div nil [:span "Last modified: "] (ts->ds (.-lastModified f))]])
      [:i {:class "fa fa-file" :style {:fontSize "50px"} :aria-hidden true}])])
 
 
